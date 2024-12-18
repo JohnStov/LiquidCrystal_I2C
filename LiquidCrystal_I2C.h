@@ -54,7 +54,7 @@
 
 class LiquidCrystal_I2C : public Print {
 public:
-  LiquidCrystal_I2C(uint8_t lcd_Addr,uint8_t lcd_cols,uint8_t lcd_rows);
+  LiquidCrystal_I2C(uint8_t lcd_Addr,uint8_t lcd_cols,uint8_t lcd_rows, TwoWire *twoWire = &Wire);
   void begin(uint8_t cols, uint8_t rows, uint8_t charsize = LCD_5x8DOTS );
   void clear();
   void home();
@@ -117,6 +117,7 @@ private:
   void write4bits(uint8_t);
   void expanderWrite(uint8_t);
   void pulseEnable(uint8_t);
+  TwoWire *_twoWire;
   uint8_t _Addr;
   uint8_t _displayfunction;
   uint8_t _displaycontrol;
